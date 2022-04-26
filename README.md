@@ -23,12 +23,13 @@ in your command line:
 adjust-brightness
 ```
 
-Or adjust brightness by giving a percent from 0 to 100 as
-program's parameter:
+Or adjusting brightness by giving percentage:
 
 ```sh
 adjust-brightness 30
 ```
+
+Note that adjusting brightness requires root privileges.
 
 ## License
 
