@@ -19,7 +19,7 @@ then
 
     if ! [[ "${displays[*]}" == *"$selected_display"* ]]
     then
-        echo -e "\e[31m]Could not find brightness range correctly\e[0m"
+        echo -e "\e[31mCould not find brightness range correctly\e[0m"
         exit 1
     fi
 elif [ "$selected_display" == "" ]
@@ -32,7 +32,7 @@ brightness="$(< "/sys/class/backlight/$selected_display/brightness")"
 
 if [ "$brightness" == "" ] || [ "$max_brightness" == "" ] || [ "$max_brightness" -le 0 ] || [ "$brightness" -lt 0 ] || [ "$brightness" -gt "$max_brightness" ]
 then
-    echo -e "\e[31m]Could not find brightness range correctly\e[0m"
+    echo -e "\e[31mCould not find brightness range correctly\e[0m"
     exit 2
 elif [ "$percent" == "" ]
 then
@@ -44,16 +44,18 @@ then
 elif [[ "${percent}" == [-+][0-9]* ]] && [ "$(($((brightness * 100 / max_brightness)) + percent))" -le "0" ]
 then
     percent="1"
-elif [[ "${percent}" == [0-9]* ]] && [ "$(($((brightness * 100 / max_brightness)) + percent))" -gt "100" ]
+elif [[ "${percent}" == [0-9]* ]] && [ "$percent" -gt "100" ]
 then
     percent="100"
-elif [[ "${percent}" == [0-9]* ]] && [ "$(($((brightness * 100 / max_brightness)) + percent))" -le "0" ]
+elif [[ "${percent}" == [0-9]* ]] && [ "$percent" -le "0" ]
 then
     percent="1"
 fi
 
+[ "$UID" -ne "0" ] && echo -e "\e[31mInsufficient permission\e[0" && exit 3
+
 case "$percent" in
     [-+][0-9]*) echo "$(($((brightness * 100 / max_brightness + percent)) * max_brightness / 100))" > "/sys/class/backlight/${displays[$selected_display]}/brightness" ;;
     [0-9]*) echo "$((percent * max_brightness / 100))" > "/sys/class/backlight/${displays[$selected_display]}/brightness" ;;
-    *) echo -e "\e[31m]Range not within (0~100]\e[0m"; exit 3 ;;
+    *) echo -e "\e[31mRange not within (0~100]\e[0m"; exit 3 ;;
 esac
