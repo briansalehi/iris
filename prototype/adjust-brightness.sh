@@ -52,8 +52,6 @@ then
     percent="1"
 fi
 
-[ "$UID" -ne "0" ] && echo -e "\e[31mInsufficient permission\e[0" && exit 3
-
 case "$percent" in
     [-+][0-9]*) echo "$(($((brightness * 100 / max_brightness + percent)) * max_brightness / 100))" > "/sys/class/backlight/${displays[$selected_display]}/brightness" ;;
     [0-9]*) echo "$((percent * max_brightness / 100))" > "/sys/class/backlight/${displays[$selected_display]}/brightness" ;;
