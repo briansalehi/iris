@@ -1,35 +1,36 @@
 # Adjust Brightness
 
-Command line tool to adjust your screen's brightness.
-
-This tool only works on Linux systems.
+Command line tool to adjust your screen's brightness (Linux only).
 
 ## Setup
 
 ```sh
+```
+
+## Build
+
+```sh
 git clone https://github.com/briansalehi/adjust-brightness.git
-cd adjust-brightness
-cmake -S . -B build -DCMAKE_BUILD_TYPE:STRING=release
+cmake -S adjust-brightness -B build -D CMAKE_BUILD_TYPE=release
 cmake --build build --parallel
-sudo cmake --build build --target install
+sudo cmake --install build
 ```
 
 ## Usage
 
-You can query current brightness by simply running the tool
-in your command line:
+Query the current brightness of your screen:
 
 ```sh
 adjust-brightness
 ```
 
-Or adjusting brightness by giving percentage:
+Set brightness of your screen by passing percentage:
 
 ```sh
-adjust-brightness 30
+sudo adjust-brightness 33
 ```
 
-Note that adjusting brightness requires root privileges.
+**Note:** adjusting brightness requires root privileges.
 
 ## License
 
