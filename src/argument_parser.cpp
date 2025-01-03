@@ -3,7 +3,8 @@
 using namespace br;
 
 argument_parser::argument_parser(std::vector<std::string> const& argv)
-    : brightness{0}
+    : percentage{0}
+    , read_only{false}
 {
     boost::program_options::options_description general_options{"Options"};
     general_options.add_options()
@@ -42,10 +43,14 @@ argument_parser::argument_parser(std::vector<std::string> const& argv)
         if (args.count("brightness"))
         {
             std::string input{args["brightness"].as<std::string>()};
-            brightness = std::stoi(input);
+            percentage = std::stoi(input);
+        }
+        else
+        {
+            read_only = true;
         }
 
-        if (brightness > 100)
+        if (percentage > 100 || percentage < 0)
         {
             throw boost::program_options::invalid_option_value{args["brightness"].as<std::string>()};
         }

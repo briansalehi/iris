@@ -16,7 +16,8 @@ private:
     boost::program_options::variables_map args;
 
 public:
-    std::int8_t brightness;
+    std::int8_t percentage;
+    bool read_only;
 
 public:
     explicit argument_parser(std::vector<std::string> const& argv);

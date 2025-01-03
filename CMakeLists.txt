@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.15)
-project(adjust-brightness VERSION 0.2 LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.30)
+project(adjust-brightness VERSION 0.3 LANGUAGES CXX DESCRIPTION "Command Line Utility to Adjust Screen Brightness")
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
@@ -32,12 +32,12 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/AdjustBrightnessConfig.cmake CONFIGURA
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/AdjustBrightnessVersion.cmake CONFIGURATIONS Release MinSizeRel DESTINATION ${CMAKE_INSTALL_LIBDIR}/adjust-brightness/cmake)
 
 # pack
-set(CPACK_PACKAGE_VENDOR "Brian Salehi")
+set(CPACK_PACKAGE_VENDOR "Brian Salehi <briansalehi@proton.me>")
 set(CPACK_PACKAGE_CONTACT "briansalehi@proton.me")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Terminal utility to adjust screen brightness")
 set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
+set(CPACK_PACKAGE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/packages)
 
 list(APPEND CPACK_DEBIAN_PACKAGE_DEPENDS libboost-program-options-dev)
 
 include(CPack)
-
