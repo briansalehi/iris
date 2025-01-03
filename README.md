@@ -1,4 +1,4 @@
-# Adjust Brightness
+# Iris
 
 Command line tool to adjust your screen's brightness (Linux only).
 
