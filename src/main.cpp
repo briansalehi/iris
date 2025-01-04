@@ -13,8 +13,7 @@ int main(int argc, char** argv)
 {
     try
     {
-        auto arg_range = std::ranges::subrange(argv + 1, argv + argc);
-        std::vector<std::string> args = std::ranges::to<std::vector<std::string>>(arg_range | std::views::transform([](char const* arg) { return std::string{arg}; }));
+        std::vector<std::string> args(argv + 1, argv + argc);
 
         br::argument_parser options(args);
 
