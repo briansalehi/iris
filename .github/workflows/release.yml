@@ -20,6 +20,7 @@ jobs:
         run: cpack -G DEB --config build/CPackConfig.cmake
       - name: RPM Package
         run: cpack -G RPM --config build/CPackConfig.cmake
-      - name: Verify Package
+      - name: ZIP Package
         run: cpack -G ZIP --config build/CPackConfig.cmake
+      - name: Verify Package
         run: zip --show-files build/Packages/*.zip
