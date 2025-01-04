@@ -8,7 +8,6 @@
 #include <vector>
 #include <string>
 #include <cmath>
-#include <print>
 
 int main(int argc, char** argv)
 {
@@ -48,13 +47,13 @@ int main(int argc, char** argv)
             target_brightness = target_percentage * max_brightness / 100;
 
             if (options.read_only)
-                std::println("{}: {}%", entry.path().filename().string(), current_percentage);
+                std::cout << entry.path().filename().string() << ": " << current_percentage << "%\n";
             else
                 std::ofstream{brightness_filepath} << target_brightness;
         }
     }
     catch (std::exception const& exp)
     {
-        std::println(std::cerr, "{}", exp.what());
+        std::cerr << exp.what() << std::endl;
     }
 }
