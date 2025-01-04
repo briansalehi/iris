@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Install Dependencies
-        run: apt update && apt install --yes --no-install-recommends libboost-system-dev libboost-program-options-dev
+        run: sudo apt update && sudo apt install --yes --no-install-recommends libboost-system-dev libboost-program-options-dev
       - name: Checkout
         uses: actions/checkout@v4
       - name: Configure
