@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - release
+      - main
 jobs:
   release:
     runs-on: ubuntu-24.04
