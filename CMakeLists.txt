@@ -16,7 +16,7 @@ file(GLOB source_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} src/*.cpp)
 add_executable(adjust-brightness ${source_files})
 target_include_directories(adjust-brightness PRIVATE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 target_link_libraries(adjust-brightness PRIVATE Boost::program_options)
-target_compile_definitions(adjust-brightness PRIVATE -D PROGRAM_VERSION=${CMAKE_PROJECT_VERSION})
+target_compile_definitions(adjust-brightness PRIVATE -D PROGRAM_VERSION="${CMAKE_PROJECT_VERSION}")
 
 # test
 enable_testing()
