@@ -39,7 +39,7 @@ jobs:
           PACKAGE_NAME="$(basename "$PACKAGE_PATH")"
           echo "PACKAGE_PATH=$PACKAGE_PATH" >> $GITHUB_ENV
           echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
-      - name: Upload Package
+      - name: Upload RPM Package
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
