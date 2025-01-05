@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
       - name: Find RPM Package
         run: |
-          package_path=$(find build/packages -type f -name "*.rpm")"
+          package_path="$(find build/packages -type f -name "*.rpm")"
           package_name="$(basename "$package_path")"
           echo "::notice::package path: $package_path"
           echo "::notice::package name: $package_name"
