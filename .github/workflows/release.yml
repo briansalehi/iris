@@ -35,16 +35,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
       - name: Find RPM Package
         run: |
-          PACKAGE_PATH=$(find build/packages -type f -name "*.rpm")"
-          PACKAGE_NAME="$(basename "$PACKAGE_PATH")"
-          echo "PACKAGE_PATH=$PACKAGE_PATH" >> $GITHUB_ENV
-          echo "PACKAGE_NAME=$PACKAGE_NAME" >> $GITHUB_ENV
+          package_path=$(find build/packages -type f -name "*.rpm")"
+          package_name="$(basename "$package_path")"
+          echo "::notice::package path: $package_path"
+          echo "::notice::package name: $package_name"
+          echo "package_path=$package_path" >> "$GITHUB_ENV"
+          echo "package_name=$package_name" >> "$GITHUB_ENV"
       - name: Upload RPM Package
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.PACKAGE_PATH }}
-          asset_name: ${{ env.PACKAGE_NAME }}
+          asset_path: ${{ env.package_path }}
+          asset_name: ${{ env.package_name }}
           asset_content_type: application/x-rpm
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
