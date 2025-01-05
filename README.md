@@ -2,13 +2,21 @@
 
 Command line tool to adjust your screen's brightness (Linux only).
 
-## Setup
-
-```sh
-```
-
 ## Build
 
+Download one of the packages in [Releases](https://github.com/briansalehi/iris/releases/latest):
+
+*Debian*
+```sh
+sudo dpkg -i iris-*.deb
+```
+
+*Fedora*
+```sh
+sudo dnf install iris-*.rpm
+```
+
+*Build from source*
 ```sh
 git clone https://github.com/briansalehi/adjust-brightness.git
 cmake -S adjust-brightness -B build -D CMAKE_BUILD_TYPE=release
