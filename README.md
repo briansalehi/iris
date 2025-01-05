@@ -18,7 +18,7 @@ sudo dnf install iris-*.rpm
 
 *Build from source*
 ```sh
-git clone https://github.com/briansalehi/adjust-brightness.git
+git clone https://github.com/briansalehi/iris.git
 cmake -S adjust-brightness -B build -D CMAKE_BUILD_TYPE=release
 cmake --build build --parallel
 sudo cmake --install build
