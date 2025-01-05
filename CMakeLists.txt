@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(Iris VERSION 0.8.2 LANGUAGES CXX DESCRIPTION "Automatic Screen Brightness Adjustment Utility")
+project(Iris VERSION 0.9.0 LANGUAGES CXX DESCRIPTION "Automatic Screen Brightness Adjustment Utility")
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)

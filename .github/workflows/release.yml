@@ -37,8 +37,6 @@ jobs:
         run: |
           package_path="$(find build/packages -maxdepth 1 -type f -name "*.rpm")"
           package_name="$(basename "$package_path")"
-          echo "::notice::package path: $package_path"
-          echo "::notice::package name: $package_name"
           echo "package_path=$package_path" >> "$GITHUB_ENV"
           echo "package_name=$package_name" >> "$GITHUB_ENV"
       - name: Upload RPM Package
@@ -48,5 +46,20 @@ jobs:
           asset_path: ${{ env.package_path }}
           asset_name: ${{ env.package_name }}
           asset_content_type: application/x-rpm
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+      - name: Find DEB Package
+        run: |
+          package_path="$(find build/packages -maxdepth 1 -type f -name "*.deb")"
+          package_name="$(basename "$package_path")"
+          echo "package_path=$package_path" >> "$GITHUB_ENV"
+          echo "package_name=$package_name" >> "$GITHUB_ENV"
+      - name: Upload DEB Package
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.package_path }}
+          asset_name: ${{ env.package_name }}
+          asset_content_type: application/deb
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
